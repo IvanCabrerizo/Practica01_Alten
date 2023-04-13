@@ -7,7 +7,7 @@
     tools:context=".LogInActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/loginBtnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -20,45 +20,47 @@
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/loginLabelHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Acceso"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toEndOf="@+id/floatingActionButton"
+        app:layout_constraintStart_toEndOf="@+id/loginBtnClose"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.05" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/loginInputEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text=""
+        android:hint="Mail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/loginLabelHeader"
         app:layout_constraintVertical_bias="0.344" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/loginInputPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/loginInputEmail"
         app:layout_constraintVertical_bias="0.112" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/loginSwitchRemember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Switch"
@@ -66,16 +68,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/loginInputPassword"
         app:layout_constraintVertical_bias="0.215" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginBtnEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintTop_toBottomOf="@+id/loginSwitchRemember" />
+
+    <ImageButton
+        android:id="@+id/loginBtnViewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/loginInputPassword"
+        app:layout_constraintEnd_toEndOf="@+id/loginInputPassword"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/loginInputPassword"
+        app:layout_constraintTop_toTopOf="@+id/loginInputPassword"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_menu_view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
