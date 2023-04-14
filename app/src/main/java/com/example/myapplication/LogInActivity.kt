@@ -16,7 +16,7 @@ class LogInActivity : AppCompatActivity(), TextWatcher {
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loginInputEmail.addTextChangedListener(this)
+/*        binding.loginInputEmail.addTextChangedListener(this)
 
         binding.loginInputPassword.addTextChangedListener(this)
 
@@ -27,7 +27,7 @@ class LogInActivity : AppCompatActivity(), TextWatcher {
             else{
                 binding.loginInputPassword.transformationMethod = null
             }
-        }
+        }*/
     }
 
     fun checkMail(mail: String): Boolean{
@@ -45,12 +45,12 @@ class LogInActivity : AppCompatActivity(), TextWatcher {
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (checkPassword(binding.loginInputPassword.text.toString()) && checkMail(binding.loginInputEmail.text.toString())){
+/*        if (checkPassword(binding.loginInputPassword.text.toString()) && checkMail(binding.loginInputEmail.text.toString())){
             binding.loginBtnEnter.isEnabled = true
         }
         else{
             binding.loginBtnEnter.isEnabled = false
-        }
+        }*/
     }
 
     override fun afterTextChanged(s: Editable?) {
