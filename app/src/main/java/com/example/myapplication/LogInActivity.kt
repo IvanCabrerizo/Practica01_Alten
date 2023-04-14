@@ -1,13 +1,13 @@
 package com.example.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.text.method.PasswordTransformationMethod
+import android.util.Log
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.example.myapplication.databinding.ActivityLogInBinding
 
-class LogInActivity : AppCompatActivity(), TextWatcher {
+class LogInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogInBinding
 
@@ -16,44 +16,22 @@ class LogInActivity : AppCompatActivity(), TextWatcher {
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-/*        binding.loginInputEmail.addTextChangedListener(this)
+        binding.loginInputEmail.addTextChangedListener {
+            binding.loginBtnEnter.isEnabled = checkMail(binding.loginInputEmail.text.toString()) && checkPassword(binding.loginInputPassword.text.toString())
+        }
 
-        binding.loginInputPassword.addTextChangedListener(this)
-
-        binding.loginBtnViewPassword.setOnClickListener {
-            if(binding.loginInputPassword.transformationMethod == null){
-                binding.loginInputPassword.transformationMethod = PasswordTransformationMethod()
-            }
-            else{
-                binding.loginInputPassword.transformationMethod = null
-            }
-        }*/
+        binding.loginInputPassword.addTextChangedListener {
+            binding.loginBtnEnter.isEnabled = checkMail(binding.loginInputEmail.text.toString()) && checkPassword(binding.loginInputPassword.text.toString())
+        }
     }
 
-    fun checkMail(mail: String): Boolean{
+    fun checkMail(mail: String): Boolean {
         val regex = Regex("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)\$")
         return regex.matches(mail)
     }
 
-    fun checkPassword(password: String): Boolean{
+    fun checkPassword(password: String): Boolean {
         val regex = Regex("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,8}$")
         return regex.matches(password)
-    }
-
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-    }
-
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-/*        if (checkPassword(binding.loginInputPassword.text.toString()) && checkMail(binding.loginInputEmail.text.toString())){
-            binding.loginBtnEnter.isEnabled = true
-        }
-        else{
-            binding.loginBtnEnter.isEnabled = false
-        }*/
-    }
-
-    override fun afterTextChanged(s: Editable?) {
-
     }
 }

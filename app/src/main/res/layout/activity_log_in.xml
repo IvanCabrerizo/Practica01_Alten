@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LogInActivity">
 
-        <TextView
+    <TextView
         android:id="@+id/loginLabelHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,21 +17,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/loginBtnClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Manolo"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/loginBtnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="Manolo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
@@ -49,7 +50,7 @@
             android:id="@+id/loginInputEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Mail"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +77,7 @@
             android:id="@+id/loginInputPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Hello"
+            android:hint="Contraseña"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,23 +89,21 @@
 
     <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/loginSwitchRemember"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="Hello"
+        android:text="Recordarme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayout1"
-        app:layout_constraintVertical_bias="0.297" />
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout1" />
 
     <Button
         android:id="@+id/loginBtnEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:text="Button"
+        android:text="Entrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
