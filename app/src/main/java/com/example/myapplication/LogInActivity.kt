@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.security.keystore.UserPresenceUnavailableException
 import android.util.Log
@@ -48,19 +49,23 @@ class LogInActivity : AppCompatActivity() {
                 }
             }.start()
         }
+
+        binding.loginBtnClose.setOnClickListener{
+            finish()
+        }
     }
 
-    fun checkMail(mail: String): Boolean {
+    private fun checkMail(mail: String): Boolean {
         val regex = Regex("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)\$")
         return regex.matches(mail)
     }
 
-    fun checkPassword(password: String): Boolean {
+    private fun checkPassword(password: String): Boolean {
         val regex = Regex("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,8}$")
         return regex.matches(password)
     }
 
-    fun checkLoginData(mail: String, password: String, userList: List<User>){
+    private fun checkLoginData(mail: String, password: String, userList: List<User>){
         val userFound = userList.find { user -> user.email == mail && user.password == password}
         val mailFound = userList.find { user -> user.email == mail }
         val passwordFound = userList.find { user -> user.password == password }
@@ -69,7 +74,12 @@ class LogInActivity : AppCompatActivity() {
             mailFound?.email != mail -> showToast("No existe el email")
             passwordFound?.password != password -> showToast("No existe la contraseña")
             userFound == null -> showToast("No existen usuario ni contraseña")
-            else -> showToast("Datos correctos")
+            else -> {
+                showToast("Datos correctos")
+                val intent = Intent(this, WelcomeActivity::class.java)
+                intent.putExtra(userFound.email, userFound.password)
+                startActivity(intent)
+            }
         }
     }
 }
