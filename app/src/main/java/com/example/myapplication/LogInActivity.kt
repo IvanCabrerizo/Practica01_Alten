@@ -39,12 +39,12 @@ class LogInActivity : AppCompatActivity() {
             Thread {
                 runOnUiThread {
                     binding.loginBtnEnter.isEnabled = false
-                    binding.loginBtnEnter.text = "Cargando"
+                    binding.loginBtnEnter.text = getString(R.string.common_loading)
                 }
                 Thread.sleep(1000)
                 runOnUiThread{
                     binding.loginBtnEnter.isEnabled = true
-                    binding.loginBtnEnter.text = "Entrar"
+                    binding.loginBtnEnter.text = getString(R.string.common_enter)
                     checkLoginData(binding.loginInputEmail.text.toString(), binding.loginInputPassword.text.toString(), usersList)
                 }
             }.start()
@@ -71,11 +71,11 @@ class LogInActivity : AppCompatActivity() {
         val passwordFound = userList.find { user -> user.password == password }
 
         when {
-            mailFound?.email != mail -> showToast("No existe el email")
-            passwordFound?.password != password -> showToast("No existe la contraseña")
-            userFound == null -> showToast("No existen usuario ni contraseña")
+            mailFound?.email != mail -> showToast(getString(R.string.common_no_exist_mail))
+            passwordFound?.password != password -> showToast(getString(R.string.common_no_exist_password))
+            userFound == null -> showToast(getString(R.string.common_no_exist_user))
             else -> {
-                showToast("Datos correctos")
+                showToast(getString(R.string.common_correct_user))
                 val intent = Intent(this, WelcomeActivity::class.java)
                 intent.putExtra(userFound.email, userFound.password)
                 startActivity(intent)
