@@ -2,15 +2,11 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.security.keystore.UserPresenceUnavailableException
-import android.util.Log
-import android.widget.EditText
-import android.widget.Toast
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.example.myapplication.databinding.ActivityLogInBinding
-import java.util.logging.Handler
+
 
 class LogInActivity : AppCompatActivity() {
 
@@ -42,12 +38,10 @@ class LogInActivity : AppCompatActivity() {
                     binding.loginBtnEnter.text = getString(R.string.common_loading)
                 }
                 Thread.sleep(1000)
-                runOnUiThread{
-                    binding.loginBtnEnter.isEnabled = true
-                    binding.loginBtnEnter.text = getString(R.string.common_enter)
-                    checkLoginData(binding.loginInputEmail.text.toString(), binding.loginInputPassword.text.toString(), usersList)
-                }
             }.start()
+            binding.loginBtnEnter.isEnabled = true
+            binding.loginBtnEnter.text = getString(R.string.common_enter)
+            checkLoginData(binding.loginInputEmail.text.toString(), binding.loginInputPassword.text.toString(), usersList)
         }
 
         binding.loginBtnClose.setOnClickListener{
@@ -56,7 +50,7 @@ class LogInActivity : AppCompatActivity() {
     }
 
     private fun checkMail(mail: String): Boolean {
-        val regex = Regex("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)\$")
+        val regex = Regex("^([\\w.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)\$")
         return regex.matches(mail)
     }
 

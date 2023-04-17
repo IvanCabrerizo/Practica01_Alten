@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".LogInActivity">
 
+<!--    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/loginStartGuideline"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+
     <TextView
         android:id="@+id/loginLabelHeader"
         android:layout_width="wrap_content"
