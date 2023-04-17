@@ -6,43 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".LogInActivity">
 
-<!--    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/loginStartGuideline"
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="32dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/loginStartGuideline"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="32dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />-->
 
 
     <TextView
         android:id="@+id/loginLabelHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/common_tittle"
+        android:text="@string/login_tittle"
         app:layout_constraintBottom_toBottomOf="@id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/loginBtnClose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/common_floating_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <ImageButton
+        android:id="@+id/loginBtnClose"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:background="@color/transparent"
+        android:contentDescription="@string/login_close_description"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
@@ -60,7 +54,7 @@
             android:id="@+id/loginInputEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/common_email_hint"
+            android:hint="@string/login_email_hint"
             android:inputType="textEmailAddress"
             android:nextFocusDown="@+id/loginInputPassword"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +82,7 @@
             android:id="@+id/loginInputPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/common_password_hint"
+            android:hint="@string/login_password_hint"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,8 +97,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="@string/common_remember"
         android:focusable="false"
+        android:text="@string/login_remember"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:text="@string/common_enter"
+        android:text="@string/login_enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
