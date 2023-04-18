@@ -74,13 +74,14 @@
         app:layout_constraintVertical_bias="0.515" />
 
     <Button
+        android:id="@+id/welcomeBtnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="119dp"
         android:layout_marginTop="200dp"
         android:background="@color/transparent"
         android:textColor="@color/md_theme_dark_inversePrimary"
-        android:drawableRight="@android:drawable/ic_delete"
+        android:drawableEnd="@android:drawable/ic_delete"
         android:text="Cerrar sesion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcomeImageAvatar" />

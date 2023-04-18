@@ -18,9 +18,9 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val usersList = listOf(
-            User("manolo@gmail.com", "Manolo92"),
-            User("paco@gmail.com", "Paco92"),
-            User("maria@gmail.com", "Maria92")
+            User("Manolo", "manolo@gmail.com", "Manolo92"),
+            User("Paco", "paco@gmail.com", "Paco92"),
+            User("Maria", "maria@gmail.com", "Maria92")
         )
 
         binding.loginInputEmail.addTextChangedListener {
@@ -71,7 +71,7 @@ class LogInActivity : AppCompatActivity() {
             else -> {
                 showToast(getString(R.string.login_correct_user))
                 val intent = Intent(this, WelcomeActivity::class.java)
-                intent.putExtra(userFound.email, userFound.password)
+                intent.putExtra("NAME", userFound.name)
                 startActivity(intent)
             }
         }
