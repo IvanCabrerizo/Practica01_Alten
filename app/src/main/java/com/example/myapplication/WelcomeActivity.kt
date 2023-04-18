@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -24,8 +23,8 @@ class WelcomeActivity : AppCompatActivity() {
         binding.welcomeBtnClose.setOnClickListener {
             val builderDialog = AlertDialog.Builder(this)
 
-            builderDialog.setTitle("Cerrar sesion")
-            builderDialog.setMessage("¿Desea salir?")
+            builderDialog.setTitle(getString(R.string.welcome_dialog_tittle))
+            builderDialog.setMessage(getString(R.string.welcome_dialog_message))
 
             builderDialog.setPositiveButton("Sí") { dialog, which ->
                 if(intent.getBooleanExtra("REMEMBER", false)){
@@ -33,12 +32,10 @@ class WelcomeActivity : AppCompatActivity() {
                     welcomeIntent.putExtra("EMAIL", intent.getStringExtra("EMAIL"))
                     welcomeIntent.putExtra("PASSWORD", intent.getStringExtra("PASSWORD"))
                     startActivity(welcomeIntent)
-                    Log.e("PRUEBA", "IF")
                 }
                 else{
                     val welcomeIntent = Intent(this, LogInActivity::class.java)
                     startActivity(welcomeIntent)
-                    Log.e("PRUEBA", "ELSE")
                 }
             }
 

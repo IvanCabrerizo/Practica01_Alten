@@ -11,5 +11,14 @@
     <string name="login_no_exist_password">No existe la contraseña</string>
     <string name="login_no_exist_user">No existen usuario ni contraseña</string>
     <string name="login_correct_user">Datos correctos</string>
+    <string name="welcome_tittle">Mis datos</string>
+    <string name="welcome_name_tittle">Nombre</string>
+    <string name="welcome_name">Paco</string>
+    <string name="welcome_mail_tittle">Email</string>
+    <string name="welcome_mail">Paco@gmail.com</string>
+    <string name="welcome_image__avatar_description">Avatar del usuario</string>
+    <string name="welcome_close">Cerrar sesion</string>
+    <string name="welcome_dialog_tittle">Cerrar sesion</string>
+    <string name="welcome_dialog_message">¿Desea salir?</string>
 
 </resources>

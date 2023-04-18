@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="Mis datos"
+        android:text="@string/welcome_tittle"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="35dp"
-        android:text="Nombre"
+        android:text="@string/welcome_name_tittle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/welcomeLabelTitle" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Paco"
+        android:text="@string/welcome_name"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/welcomeLabelTitleName" />
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="Email"
+        android:text="@string/welcome_mail_tittle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/welcomeLabelName" />
 
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Paco@gmail.com"
+        android:text="@string/welcome_mail"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/welcomeLabelMailTitle" />
@@ -64,7 +64,7 @@
         android:id="@+id/welcomeImageAvatar"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/welcome_image__avatar_description"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
         android:background="@color/transparent"
         android:textColor="@color/md_theme_dark_inversePrimary"
         android:drawableEnd="@android:drawable/ic_delete"
-        android:text="Cerrar sesion"
+        android:text="@string/welcome_close"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcomeImageAvatar" />
 
