@@ -10,48 +10,80 @@
         android:id="@+id/welcomeLabelTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_enter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="Mis datos"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/welcomeLabelTitleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_enter"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:text="Nombre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeLabelTitle" />
+        app:layout_constraintTop_toTopOf="@id/welcomeLabelTitle" />
 
     <TextView
         android:id="@+id/welcomeLabelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_enter"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Paco"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeLabelTitleName" />
+        app:layout_constraintTop_toTopOf="@id/welcomeLabelTitleName" />
 
     <TextView
         android:id="@+id/welcomeLabelMailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_email_hint"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeLabelName" />
+        app:layout_constraintTop_toTopOf="@id/welcomeLabelName" />
 
     <TextView
         android:id="@+id/welcomeLabelMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_enter"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Paco@gmail.com"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeLabelMailTitle" />
+        app:layout_constraintTop_toTopOf="@id/welcomeLabelMailTitle" />
+
+    <ImageView
+        android:id="@+id/welcomeImageAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.515" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/transparent"
+        android:textColor="@color/md_theme_dark_inversePrimary"
+        android:drawableRight="@android:drawable/ic_delete"
+        android:text="Cerrar sesion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeImageAvatar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
