@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -17,10 +18,17 @@ class LogInActivity : AppCompatActivity() {
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val emailRemember = Editable.Factory.getInstance().newEditable(intent.getStringExtra("EMAIL") ?:"")
+        val passwordRemember = Editable.Factory.getInstance().newEditable(intent.getStringExtra("PASSWORD") ?:"")
+
+
+        binding.loginInputEmail.text = emailRemember
+        binding.loginInputPassword.text = passwordRemember
+
         val usersList = listOf(
-            User("Manolo", "manolo@gmail.com", "Manolo92"),
-            User("Paco", "paco@gmail.com", "Paco92"),
-            User("Maria", "maria@gmail.com", "Maria92")
+            User("Manolo", "manolo@gmail.com", "Manolo92", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Outdoors-man-portrait_%28cropped%29.jpg/800px-Outdoors-man-portrait_%28cropped%29.jpg"),
+            User("Paco", "paco@gmail.com", "Paco92", "https://www.westyorkshire.police.uk/sites/default/files/2022-11/matthew_fisher.jpg"),
+            User("Maria", "maria@gmail.com", "Maria92", "https://upload.wikimedia.org/wikipedia/commons/1/1f/Woman_1.jpg")
         )
 
         binding.loginInputEmail.addTextChangedListener {
@@ -38,14 +46,16 @@ class LogInActivity : AppCompatActivity() {
                     binding.loginBtnEnter.text = getString(R.string.login_loading)
                 }
                 Thread.sleep(1000)
+                runOnUiThread {
+                    binding.loginBtnEnter.isEnabled = true
+                    binding.loginBtnEnter.text = getString(R.string.login_enter)
+                    checkLoginData(binding.loginInputEmail.text.toString(), binding.loginInputPassword.text.toString(), usersList)
+                }
             }.start()
-            binding.loginBtnEnter.isEnabled = true
-            binding.loginBtnEnter.text = getString(R.string.login_enter)
-            checkLoginData(binding.loginInputEmail.text.toString(), binding.loginInputPassword.text.toString(), usersList)
         }
 
         binding.loginBtnClose.setOnClickListener{
-            finish()
+            finishAffinity()
         }
     }
 
@@ -70,9 +80,13 @@ class LogInActivity : AppCompatActivity() {
             userFound == null -> showToast(getString(R.string.login_no_exist_user))
             else -> {
                 showToast(getString(R.string.login_correct_user))
-                val intent = Intent(this, WelcomeActivity::class.java)
-                intent.putExtra("NAME", userFound.name)
-                startActivity(intent)
+                val loginIntent = Intent(this, WelcomeActivity::class.java)
+                loginIntent.putExtra("NAME", userFound.name)
+                loginIntent.putExtra("EMAIL", userFound.email)
+                loginIntent.putExtra("AVATAR", userFound.avatar)
+                loginIntent.putExtra("PASSWORD", userFound.password)
+                loginIntent.putExtra("REMEMBER", binding.loginSwitchRemember.isChecked)
+                startActivity(loginIntent)
             }
         }
     }
