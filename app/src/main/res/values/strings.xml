@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">LogIn</string>
+    <string name="login_enter">Entrar</string>
+    <string name="login_remember">Recordarme</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_close_description">Boton de cierre de app</string>
+    <string name="login_tittle">Acceso</string>
+    <string name="login_loading">Cargando</string>
+    <string name="login_no_exist_mail">No existe el email</string>
+    <string name="login_no_exist_password">No existe la contraseña</string>
+    <string name="login_no_exist_user">No existen usuario ni contraseña</string>
+    <string name="login_correct_user">Datos correctos</string>
+
 </resources>
