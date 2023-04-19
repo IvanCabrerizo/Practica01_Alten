@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -9,16 +10,23 @@ import com.example.myapplication.databinding.ActivityWelcomeBinding
 
 class WelcomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityWelcomeBinding
+    private val binding by lazy { ActivityWelcomeBinding.inflate(layoutInflater) }
+
+    companion object{
+        private const val KEY_NAME = "NAME"
+        private const val KEY_EMAIL = "EMAIL"
+        private const val KEY_PASSWORD = "PASSWORD"
+        private const val KEY_AVATAR = "AVATAR"
+        private const val KEY_REMEMBER = "REMEMBER"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.welcomeLabelName.text = intent.getStringExtra("NAME")
-        binding.welcomeLabelMail.text = intent.getStringExtra("EMAIL")
-        Glide.with(this).load(intent.getStringExtra("AVATAR")).into(binding.welcomeImageAvatar)
+        binding.welcomeLabelName.text = intent.getStringExtra(KEY_NAME)
+        binding.welcomeLabelMail.text = intent.getStringExtra(KEY_EMAIL)
+        binding.welcomeImageAvatar.glideUrl(KEY_AVATAR)
 
         binding.welcomeBtnClose.setOnClickListener {
             val builderDialog = AlertDialog.Builder(this)
@@ -27,16 +35,7 @@ class WelcomeActivity : AppCompatActivity() {
             builderDialog.setMessage(getString(R.string.welcome_dialog_message))
 
             builderDialog.setPositiveButton("Sí") { dialog, which ->
-                if(intent.getBooleanExtra("REMEMBER", false)){
-                    val welcomeIntent = Intent(this, LogInActivity::class.java)
-                    welcomeIntent.putExtra("EMAIL", intent.getStringExtra("EMAIL"))
-                    welcomeIntent.putExtra("PASSWORD", intent.getStringExtra("PASSWORD"))
-                    startActivity(welcomeIntent)
-                }
-                else{
-                    val welcomeIntent = Intent(this, LogInActivity::class.java)
-                    startActivity(welcomeIntent)
-                }
+
             }
 
             builderDialog.setNegativeButton("No") { dialog, which ->
@@ -46,5 +45,17 @@ class WelcomeActivity : AppCompatActivity() {
             val dialog = builderDialog.create()
             dialog.show()
         }
+    }
+
+    fun goToLogin(){
+        val loginIntent = if(intent.getBooleanExtra(KEY_REMEMBER, false)){
+            LogInActivity.newIntent()
+        }
+        else{
+
+        }
+    }
+    fun ImageView.glideUrl(url: String) {
+        Glide.with(this).load(url).into(this)
     }
 }
