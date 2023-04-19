@@ -2,9 +2,15 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.example.myapplication.WelcomeActivity.Companion.KEY_AVATAR
+import com.example.myapplication.WelcomeActivity.Companion.KEY_EMAIL
+import com.example.myapplication.WelcomeActivity.Companion.KEY_NAME
+import com.example.myapplication.WelcomeActivity.Companion.KEY_PASSWORD
+import com.example.myapplication.WelcomeActivity.Companion.KEY_REMEMBER
 import com.example.myapplication.databinding.ActivityLogInBinding
 
 
@@ -12,11 +18,20 @@ class LogInActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityLogInBinding.inflate(layoutInflater) }
 
+    private val emailRemember by lazy {
+        Editable.Factory.getInstance().newEditable(intent.getStringExtra(KEY_EMAIL) ?: "")
+    }
+    private val passwordRemember by lazy {
+        Editable.Factory.getInstance().newEditable(intent.getStringExtra(KEY_PASSWORD) ?: "")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         with(binding) {
+            loginInputEmail.text = emailRemember
+            loginInputPassword.text = passwordRemember
             setupLogInBtnEnter()
             setupLogInBtnClose()
             setupLogInInputEmail()
@@ -45,13 +60,18 @@ class LogInActivity : AppCompatActivity() {
             passwordFound?.password != password -> R.string.login_no_exist_password
             userFound == null -> R.string.login_no_exist_user
             else -> {
-                val intent = Intent(this, WelcomeActivity::class.java)
-                intent.putExtra("EMAIL", userFound.password)
-                startActivity(intent)
+                val welcomeIntent = Intent(this, WelcomeActivity::class.java)
+                with(welcomeIntent) {
+                    putExtra(KEY_NAME, userFound.name)
+                    putExtra(KEY_EMAIL, userFound.email)
+                    putExtra(KEY_PASSWORD, userFound.password)
+                    putExtra(KEY_AVATAR, userFound.avatar)
+                    putExtra(KEY_REMEMBER, binding.loginSwitchRemember.isChecked)
+                }
+                startActivity(welcomeIntent)
                 R.string.login_correct_user
             }
         }))
-
     }
 
     private fun ActivityLogInBinding.setupLogInBtnEnter() {

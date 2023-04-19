@@ -20,5 +20,6 @@
     <string name="welcome_close">Cerrar sesion</string>
     <string name="welcome_dialog_tittle">Cerrar sesion</string>
     <string name="welcome_dialog_message">¿Desea salir?</string>
-
+    <string name="welcome_yes">Si</string>
+    <string name="welcome_no">No</string>
 </resources>

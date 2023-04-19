@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="_65_dp">65dp</dimen>
-    <dimen name="_200dp">200dp</dimen>
-    <dimen name="_8dp">8dp</dimen>
-    <dimen name="_50dp">50dp</dimen>
-    <dimen name="_300dp">300dp</dimen>
-    <dimen name="_40dp">40dp</dimen>
+    <dimen name="dp65">65dp</dimen>
+    <dimen name="dp200">200dp</dimen>
+    <dimen name="dp8">8dp</dimen>
+    <dimen name="dp50">50dp</dimen>
+    <dimen name="dp300">300dp</dimen>
+    <dimen name="dp40">40dp</dimen>
+    <dimen name="half_bias">0.5</dimen>
+    <dimen name="sp16">16sp</dimen>
+    <dimen name="dp20">20dp</dimen>
+    <dimen name="dp35">35dp</dimen>
+    <dimen name="dp34">34dp</dimen>
+    <dimen name="dp22">22dp</dimen>
+    <dimen name="dp30">30dp</dimen>
 </resources>

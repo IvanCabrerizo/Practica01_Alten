@@ -12,50 +12,53 @@ class WelcomeActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityWelcomeBinding.inflate(layoutInflater) }
 
-    companion object{
-        private const val KEY_NAME = "NAME"
-        private const val KEY_EMAIL = "EMAIL"
-        private const val KEY_PASSWORD = "PASSWORD"
-        private const val KEY_AVATAR = "AVATAR"
-        private const val KEY_REMEMBER = "REMEMBER"
+    companion object {
+        const val KEY_NAME = "NAME"
+        const val KEY_EMAIL = "EMAIL"
+        const val KEY_PASSWORD = "PASSWORD"
+        const val KEY_AVATAR = "AVATAR"
+        const val KEY_REMEMBER = "REMEMBER"
     }
 
+    private val userName by lazy { intent.getStringExtra(KEY_NAME) }
+    private val userMail by lazy { intent.getStringExtra(KEY_EMAIL) }
+    private val userPassword by lazy { intent.getStringExtra(KEY_PASSWORD) }
+    private val userAvatar by lazy { intent.getStringExtra(KEY_AVATAR) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.welcomeLabelName.text = intent.getStringExtra(KEY_NAME)
-        binding.welcomeLabelMail.text = intent.getStringExtra(KEY_EMAIL)
-        binding.welcomeImageAvatar.glideUrl(KEY_AVATAR)
+        binding.welcomeLabelName.text = userName
+        binding.welcomeLabelMail.text = userMail
+        binding.welcomeImageAvatar.glideUrl(userAvatar.toString())
 
         binding.welcomeBtnClose.setOnClickListener {
-            val builderDialog = AlertDialog.Builder(this)
-
-            builderDialog.setTitle(getString(R.string.welcome_dialog_tittle))
-            builderDialog.setMessage(getString(R.string.welcome_dialog_message))
-
-            builderDialog.setPositiveButton("Sí") { dialog, which ->
-
-            }
-
-            builderDialog.setNegativeButton("No") { dialog, which ->
-                dialog.dismiss()
-            }
-
-            val dialog = builderDialog.create()
-            dialog.show()
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.welcome_dialog_tittle))
+                setMessage(getString(R.string.welcome_dialog_message))
+                setPositiveButton(getString(R.string.welcome_yes)) { dialog, which ->
+                    goToLogin()
+                }
+                setNegativeButton(getString(R.string.welcome_no)) { dialog, which ->
+                    dialog.dismiss()
+                }
+            }.create().show()
         }
     }
 
-    fun goToLogin(){
-        val loginIntent = if(intent.getBooleanExtra(KEY_REMEMBER, false)){
-            LogInActivity.newIntent()
+    private fun goToLogin() {
+        val loginIntent = if (intent.getBooleanExtra(KEY_REMEMBER, false)) {
+            Intent(this, LogInActivity::class.java)
+                .putExtra(KEY_EMAIL, userMail)
+                .putExtra(KEY_PASSWORD, userPassword)
+        } else {
+            Intent(this, LogInActivity::class.java)
         }
-        else{
-
-        }
+        startActivity(loginIntent)
+        finish()
     }
-    fun ImageView.glideUrl(url: String) {
+
+    private fun ImageView.glideUrl(url: String) {
         Glide.with(this).load(url).into(this)
     }
 }
