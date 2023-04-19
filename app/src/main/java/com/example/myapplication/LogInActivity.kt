@@ -16,7 +16,7 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        with(binding){
+        with(binding) {
             setupLogInBtnEnter()
             setupLogInBtnClose()
             setupLogInInputEmail()
@@ -35,25 +35,26 @@ class LogInActivity : AppCompatActivity() {
         return regex.matches(password)
     }
 
-    private fun checkLoginData(mail: String, password: String, userList: List<User>){
-        val userFound = userList.find { user -> user.email == mail && user.password == password}
+    private fun checkLoginData(mail: String, password: String, userList: List<User>) {
+        val userFound = userList.find { user -> user.email == mail && user.password == password }
         val mailFound = userList.find { user -> user.email == mail }
         val passwordFound = userList.find { user -> user.password == password }
 
-        when {
-            mailFound?.email != mail -> showToast(getString(R.string.login_no_exist_mail))
-            passwordFound?.password != password -> showToast(getString(R.string.login_no_exist_password))
-            userFound == null -> showToast(getString(R.string.login_no_exist_user))
+        showToast(getString(when {
+            mailFound?.email != mail -> R.string.login_no_exist_mail
+            passwordFound?.password != password -> R.string.login_no_exist_password
+            userFound == null -> R.string.login_no_exist_user
             else -> {
-                showToast(getString(R.string.login_correct_user))
                 val intent = Intent(this, WelcomeActivity::class.java)
-                intent.putExtra("MAIL", userFound.email)
+                intent.putExtra("EMAIL", userFound.password)
                 startActivity(intent)
+                R.string.login_correct_user
             }
-        }
+        }))
+
     }
 
-    private fun ActivityLogInBinding.setupLogInBtnEnter(){
+    private fun ActivityLogInBinding.setupLogInBtnEnter() {
         loginBtnEnter.setOnClickListener {
             Thread {
                 runOnUiThread {
@@ -74,20 +75,20 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
-    private fun ActivityLogInBinding.setupLogInBtnClose(){
+    private fun ActivityLogInBinding.setupLogInBtnClose() {
         loginBtnClose.setOnClickListener {
             finishAffinity()
         }
     }
 
-    private fun ActivityLogInBinding.setupLogInInputEmail(){
+    private fun ActivityLogInBinding.setupLogInInputEmail() {
         loginInputEmail.addTextChangedListener {
             binding.loginBtnEnter.isEnabled =
                 checkMail(binding.loginInputEmail.text.toString()) && checkPassword(binding.loginInputPassword.text.toString())
         }
     }
 
-    private fun ActivityLogInBinding.setupLogInInputPassword(){
+    private fun ActivityLogInBinding.setupLogInInputPassword() {
         loginInputPassword.addTextChangedListener {
             binding.loginBtnEnter.isEnabled =
                 checkMail(binding.loginInputEmail.text.toString()) && checkPassword(binding.loginInputPassword.text.toString())
