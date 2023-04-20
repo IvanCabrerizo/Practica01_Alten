@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -24,25 +25,16 @@ class WelcomeActivity : AppCompatActivity() {
     private val userMail by lazy { intent.getStringExtra(KEY_EMAIL) }
     private val userPassword by lazy { intent.getStringExtra(KEY_PASSWORD) }
     private val userAvatar by lazy { intent.getStringExtra(KEY_AVATAR) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.welcomeLabelName.text = userName
-        binding.welcomeLabelMail.text = userMail
-        binding.welcomeImageAvatar.glideUrl(userAvatar.toString())
-
-        binding.welcomeBtnClose.setOnClickListener {
-            AlertDialog.Builder(this).apply {
-                setTitle(getString(R.string.welcome_dialog_tittle))
-                setMessage(getString(R.string.welcome_dialog_message))
-                setPositiveButton(getString(R.string.welcome_yes)) { dialog, which ->
-                    goToLogin()
-                }
-                setNegativeButton(getString(R.string.welcome_no)) { dialog, which ->
-                    dialog.dismiss()
-                }
-            }.create().show()
+        with(binding){
+            welcomeLabelName.text = userName
+            welcomeLabelMail.text = userMail
+            welcomeImageAvatar.glideUrl(userAvatar.toString())
+            setupWelcomeBtnClose(this@WelcomeActivity)
         }
     }
 
@@ -56,6 +48,21 @@ class WelcomeActivity : AppCompatActivity() {
         }
         startActivity(loginIntent)
         finish()
+    }
+
+    private fun ActivityWelcomeBinding.setupWelcomeBtnClose(context: Context) {
+        welcomeBtnClose.setOnClickListener {
+            AlertDialog.Builder(context).apply {
+                setTitle(getString(R.string.welcome_dialog_tittle))
+                setMessage(getString(R.string.welcome_dialog_message))
+                setPositiveButton(getString(R.string.welcome_yes)) { dialog, which ->
+                    goToLogin()
+                }
+                setNegativeButton(getString(R.string.welcome_no)) { dialog, which ->
+                    dialog.dismiss()
+                }
+            }.create().show()
+        }
     }
 
     private fun ImageView.glideUrl(url: String) {
