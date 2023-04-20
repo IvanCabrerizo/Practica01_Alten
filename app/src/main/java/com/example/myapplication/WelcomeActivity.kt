@@ -21,10 +21,10 @@ class WelcomeActivity : AppCompatActivity() {
         const val KEY_REMEMBER = "REMEMBER"
     }
 
-    private val userName by lazy { intent.getStringExtra(KEY_NAME) }
-    private val userMail by lazy { intent.getStringExtra(KEY_EMAIL) }
-    private val userPassword by lazy { intent.getStringExtra(KEY_PASSWORD) }
-    private val userAvatar by lazy { intent.getStringExtra(KEY_AVATAR) }
+    private val userName: String by lazy { intent.getStringExtra(KEY_NAME).toString() }
+    private val userMail: String by lazy { intent.getStringExtra(KEY_EMAIL).toString() }
+    private val userPassword: String by lazy { intent.getStringExtra(KEY_PASSWORD).toString() }
+    private val userAvatar: String by lazy { intent.getStringExtra(KEY_AVATAR).toString() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +33,19 @@ class WelcomeActivity : AppCompatActivity() {
         with(binding){
             welcomeLabelName.text = userName
             welcomeLabelMail.text = userMail
-            welcomeImageAvatar.glideUrl(userAvatar.toString())
+            welcomeImageAvatar.glideUrl(userAvatar)
             setupWelcomeBtnClose(this@WelcomeActivity)
         }
     }
 
     private fun goToLogin() {
         val loginIntent = if (intent.getBooleanExtra(KEY_REMEMBER, false)) {
-            Intent(this, LogInActivity::class.java)
-                .putExtra(KEY_EMAIL, userMail)
-                .putExtra(KEY_PASSWORD, userPassword)
+            newIntent(this, userMail, userPassword)
         } else {
-            Intent(this, LogInActivity::class.java)
+            newIntent(this)
         }
         startActivity(loginIntent)
-        finish()
+        finishAffinity()
     }
 
     private fun ActivityWelcomeBinding.setupWelcomeBtnClose(context: Context) {
@@ -68,4 +66,16 @@ class WelcomeActivity : AppCompatActivity() {
     private fun ImageView.glideUrl(url: String) {
         Glide.with(this).load(url).into(this)
     }
+
+    private fun newIntent(context: Context, email: String, password: String): Intent{
+        return Intent(context, LogInActivity::class.java).apply{
+            putExtra(KEY_EMAIL, email)
+            putExtra(KEY_PASSWORD, password)
+        }
+    }
+
+    private fun newIntent(context: Context): Intent{
+        return Intent(context, LogInActivity::class.java)
+    }
+
 }
